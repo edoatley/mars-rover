@@ -94,4 +94,32 @@ public class SimpleUseCasesMarsRoverTest {
         assertThat(rover.getEndPosition()).isEqualTo(new RoverLocation(1,1, CompassDirection.EAST));
     }
 
+    @Test
+    public void testMovingInCircles() {
+        // given
+        Grid grid = new Grid(5,5);
+        Rover rover = new Rover(new RoverLocation(1,2, CompassDirection.NORTH), "LMLMLMLMM");
+
+        // when
+        roverMover.move(rover, grid);
+
+        // then
+        assertThat(rover.getEndPosition()).isEqualTo(new RoverLocation(1,3, CompassDirection.NORTH));
+    }
+
+    @Test
+    public void testMovingABit() {
+        // given
+        Grid grid = new Grid(5,5);
+        Rover rover = new Rover(new RoverLocation(3,3, CompassDirection.EAST), "MMRMMRMRRM");
+
+        // when
+        roverMover.move(rover, grid);
+
+        // then
+        assertThat(rover.getEndPosition()).isEqualTo(new RoverLocation(5,1, CompassDirection.EAST));
+    }
+
+
+
 }

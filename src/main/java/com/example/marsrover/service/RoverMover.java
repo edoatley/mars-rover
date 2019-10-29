@@ -25,6 +25,10 @@ public class RoverMover {
                     cd = turnRight(cd);
                     break;
 
+                case 'L':
+                    cd = turnLeft(cd);
+                    break;
+
             }
         }
 
