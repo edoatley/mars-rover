@@ -4,8 +4,7 @@ import com.example.marsrover.model.CompassDirection;
 import com.example.marsrover.model.Grid;
 import com.example.marsrover.model.Rover;
 import com.example.marsrover.model.RoverLocation;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
+import com.example.marsrover.service.RoverMover;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -65,11 +64,10 @@ Expected Output:
 * * * * *
 
  */
-public class MarsRoverTest {
+public class SimpleUseCasesMarsRoverTest {
 
     RoverMover roverMover = new RoverMover();;
 
-    @DisplayName("Single Rover can move up two spaces correctly")
     @Test
     public void testMoveTwoUp() {
         // given
@@ -81,6 +79,19 @@ public class MarsRoverTest {
 
         // then
         assertThat(rover.getEndPosition()).isEqualTo(new RoverLocation(0,2, CompassDirection.NORTH));
+    }
+
+    @Test
+    public void testMoveOneUpAndOneAcross() {
+        // given
+        Grid grid = new Grid(5,5);
+        Rover rover = new Rover(new RoverLocation(0,0, CompassDirection.NORTH), "MRM");
+
+        // when
+        roverMover.move(rover, grid);
+
+        // then
+        assertThat(rover.getEndPosition()).isEqualTo(new RoverLocation(1,1, CompassDirection.EAST));
     }
 
 }

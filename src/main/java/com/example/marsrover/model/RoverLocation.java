@@ -51,5 +51,14 @@ public class RoverLocation {
                 y == that.y &&
                 dir == that.dir;
     }
+
+    @Override
+    public String toString() {
+        return "RoverLocation{" +
+                "x=" + x +
+                ", y=" + y +
+                ", dir=" + dir +
+                '}';
+    }
 }
 
