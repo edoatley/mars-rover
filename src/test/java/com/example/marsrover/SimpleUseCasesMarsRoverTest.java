@@ -75,7 +75,7 @@ public class SimpleUseCasesMarsRoverTest {
         Rover rover = new Rover(new RoverLocation(0,0, CompassDirection.NORTH), "MM");
 
         // when
-        roverMover.move(rover, grid);
+        roverMover.move(toArray(rover), grid);
 
         // then
         assertThat(rover.getEndPosition()).isEqualTo(new RoverLocation(0,2, CompassDirection.NORTH));
@@ -88,7 +88,7 @@ public class SimpleUseCasesMarsRoverTest {
         Rover rover = new Rover(new RoverLocation(0,0, CompassDirection.NORTH), "MRM");
 
         // when
-        roverMover.move(rover, grid);
+        roverMover.move(toArray(rover), grid);
 
         // then
         assertThat(rover.getEndPosition()).isEqualTo(new RoverLocation(1,1, CompassDirection.EAST));
@@ -101,7 +101,7 @@ public class SimpleUseCasesMarsRoverTest {
         Rover rover = new Rover(new RoverLocation(1,2, CompassDirection.NORTH), "LMLMLMLMM");
 
         // when
-        roverMover.move(rover, grid);
+        roverMover.move(toArray(rover), grid);
 
         // then
         assertThat(rover.getEndPosition()).isEqualTo(new RoverLocation(1,3, CompassDirection.NORTH));
@@ -114,12 +114,15 @@ public class SimpleUseCasesMarsRoverTest {
         Rover rover = new Rover(new RoverLocation(3,3, CompassDirection.EAST), "MMRMMRMRRM");
 
         // when
-        roverMover.move(rover, grid);
+        roverMover.move(toArray(rover), grid);
 
         // then
         assertThat(rover.getEndPosition()).isEqualTo(new RoverLocation(5,1, CompassDirection.EAST));
     }
 
+    private Rover[] toArray(Rover rover) {
+        return new Rover[] {rover};
+    }
 
 
 }

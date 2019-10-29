@@ -8,32 +8,34 @@ import com.example.marsrover.model.RoverLocation;
 
 public class RoverMover {
 
-    public void move(Rover rover, Grid grid) {
-        int x = rover.getStartPosition().getX();
-        int y = rover.getStartPosition().getY();
-        CompassDirection cd = rover.getStartPosition().getDir();
-        String instructions = rover.getInstructions();
+    public void move(Rover[] rovers, Grid grid) {
+        for (Rover rover : rovers) {
+            int x = rover.getStartPosition().getX();
+            int y = rover.getStartPosition().getY();
+            CompassDirection cd = rover.getStartPosition().getDir();
+            String instructions = rover.getInstructions();
 
-        for (char instruction: instructions.toCharArray()) {
-            switch (instruction) {
-                case 'M':
-                    x = moveAdjustX(cd, x);
-                    y = moveAdjustY(cd, y);
-                    break;
+            for (char instruction : instructions.toCharArray()) {
+                switch (instruction) {
+                    case 'M':
+                        x = moveAdjustX(cd, x);
+                        y = moveAdjustY(cd, y);
+                        break;
 
-                case 'R':
-                    cd = turnRight(cd);
-                    break;
+                    case 'R':
+                        cd = turnRight(cd);
+                        break;
 
-                case 'L':
-                    cd = turnLeft(cd);
-                    break;
+                    case 'L':
+                        cd = turnLeft(cd);
+                        break;
 
+                }
             }
-        }
 
-        rover.setEndPosition(new RoverLocation(x, y, cd));
-        rover.setHasMoved(true);
+            rover.setEndPosition(new RoverLocation(x, y, cd));
+            rover.setHasMoved(true);
+        }
     }
 
     private int moveAdjustX(CompassDirection cd, int prevX) {
